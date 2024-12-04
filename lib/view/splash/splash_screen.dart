@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_clean_arch/view/config/routes/routes_name.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: TextButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(context, RoutesName.homeScreen),
           child: const Text(
             'Go To Home',
             style: TextStyle(
