@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_clean_arch/services/splash_services.dart';
 import 'package:flutter_bloc_clean_arch/view/config/data/exceptions/app_exceptions.dart';
 import '../config/components/round_button.dart';
 import '../config/components/loading_widget.dart';
@@ -13,6 +14,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final SplashServices _splashServices = SplashServices();
+
+  @override
+  void initState() {
+    super.initState();
+    _splashServices.isLogin(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
