@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../config/components/internet_exception_widget.dart';
-import '../config/components/loading_widget.dart';
-import 'package:flutter_bloc_clean_arch/view/config/routes/routes_name.dart';
-
+import 'package:flutter_bloc_clean_arch/view/config/data/exceptions/app_exceptions.dart';
 import '../config/components/round_button.dart';
+import '../config/components/loading_widget.dart';
+import '../config/components/internet_exception_widget.dart';
+import 'package:flutter_bloc_clean_arch/view/config/routes/routes_name.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
             InternetExceptionWidget(
               onPressed: () {},
             ),
-            /*  RoundButton(
+            RoundButton(
               onTap: () {},
               title: 'Button',
               height: 50,
@@ -37,9 +37,14 @@ class _SplashScreenState extends State<SplashScreen> {
                   fontSize: 30,
                 ),
               ),
-            ), */
+            ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          throw NoInternetException('No Internet Exception Occur');
+        },
       ),
     );
   }
