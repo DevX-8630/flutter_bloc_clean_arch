@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import 'widgets/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_clean_arch/bloc/login_bloc/login_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -9,6 +11,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _loginBloc = LoginBloc();
+  }
+
+  late LoginBloc _loginBloc;
   final emailFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
 
@@ -22,30 +31,33 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              EmailInputWidget(
-                emailFocusNode: emailFocusNode,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              PasswordInputWidget(
-                passwordFocusNode: passwordFocusNode,
-              ),
-              const SizedBox(
-                height: 35,
-              ),
-              LoginButton(
-                formKey: _formKey,
-              ),
-            ],
+      body: BlocProvider(
+        create: (_) => _loginBloc,
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                EmailInputWidget(
+                  emailFocusNode: emailFocusNode,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                PasswordInputWidget(
+                  passwordFocusNode: passwordFocusNode,
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                LoginButton(
+                  formKey: _formKey,
+                ),
+              ],
+            ),
           ),
         ),
       ),
